@@ -1,0 +1,17 @@
+# Credenciais e dados sensíveis — NUNCA versionar
+config/config.yaml
+config/token.json
+config/salas.csv
+config/client_secret*.json
+*.env
+.env
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs e artefatos locais
+*.log
+debug/

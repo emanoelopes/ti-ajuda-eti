@@ -1,0 +1,13 @@
+# Exemplo de crontab para checagens automáticas do TI Ajuda ETI.
+# Copie as linhas relevantes com `crontab -e` e ajuste caminhos/horários.
+#
+# Formato: minuto hora dia mês dia_semana comando
+
+# Checa status das salas de segunda-feira às 18:50 (10 min antes das 19h)
+50 18 * * 1 cd /caminho/para/ti-ajuda-eti && .venv/bin/python3 scripts/checar_salas_meet.py --csv config/salas.csv --dia segunda >> cron/checagem_segunda.log 2>&1
+
+# Checa status das salas de quarta-feira às 18:50
+50 18 * * 3 cd /caminho/para/ti-ajuda-eti && .venv/bin/python3 scripts/checar_salas_meet.py --csv config/salas.csv --dia quarta >> cron/checagem_quarta.log 2>&1
+
+# Confere se a gravação da sala BS4 já subiu ao Drive, 2h depois do fim do encontro de quarta (21h -> 23h)
+0 23 * * 3 cd /caminho/para/ti-ajuda-eti && .venv/bin/python3 scripts/verificar_gravacoes.py --sala BS4 --desde $(date +\%Y-\%m-\%d) >> cron/gravacoes_quarta.log 2>&1

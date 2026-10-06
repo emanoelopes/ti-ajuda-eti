@@ -1,0 +1,34 @@
+# Configuração do TI Ajuda ETI
+# Copie este arquivo para config.yaml e preencha com seus próprios dados.
+# NUNCA commite config.yaml (já está no .gitignore).
+
+google:
+  # Caminho do client secret OAuth baixado do Google Cloud Console
+  # (APIs & Serviços > Credenciais > OAuth client ID > Desktop app).
+  client_secret_path: "config/client_secret.json"
+  # Onde o token gerado por scripts/auth_setup.py será salvo/lido.
+  token_path: "config/token.json"
+  # Escopos necessários (ajuste conforme os scripts que for usar).
+  scopes:
+    - "https://www.googleapis.com/auth/drive.readonly"
+    - "https://www.googleapis.com/auth/spreadsheets.readonly"
+    - "https://www.googleapis.com/auth/meetings.space.readonly"
+
+drive:
+  # Padrão de nome usado para localizar gravações no Drive.
+  # {TAG} é substituído pelo identificador da sala passado em --sala (ex.: BS4, CS1).
+  nome_contem: "{TAG}"
+  # Pasta raiz onde as gravações do Meet ficam salvas (opcional; se vazio, busca em todo o Drive).
+  pasta_id: ""
+
+sheets:
+  # ID da planilha usada como fonte de verdade das salas/turmas (opcional,
+  # só necessário se checar_salas_meet.py for alimentado direto da planilha
+  # em vez de um CSV local).
+  planilha_id: ""
+  aba: "Turmas"
+
+salas:
+  # Caminho do CSV com a lista de salas (nome, dia_semana, link_meet).
+  # Veja config/salas.example.csv para o formato.
+  csv_path: "config/salas.csv"
